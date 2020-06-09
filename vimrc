@@ -128,3 +128,4 @@ let g:nerdtree_tabs_open_on_console_startup=1
 colorscheme desert
 nnoremap <Leader>vv :vimgrep <cword> ./**/* <CR>:cw<CR>
 set wildignore+=**/bower_components/**,**/node_modules/**,**vendor/bundle**
+set hlsearch
