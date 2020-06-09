@@ -12,13 +12,17 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
-Bundle 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
 Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
-"Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'tpope/vim-fugitive'
+"Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'vim-vdebug/vdebug'
 
 " add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
@@ -45,21 +49,30 @@ set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za
 
-au BufNewFile,BufRead *.py
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set textwidth=79
-    \ set expandtab
-    \ set autoindent
-    \ set fileformat=unix
+au Filetype python set
+     \ tabstop=4
+     \ softtabstop=4
+     \ shiftwidth=4
+     \ textwidth=79
+     \ expandtab
+     \ autoindent
+     \ fileformat=unix
+autocmd Filetype cpp set
+     \ tabstop=4
+     \ softtabstop=4
+     \ shiftwidth=4
+     \ textwidth=79
+     \ expandtab
+     \ autoindent
+     \ fileformat=unix
+
 
 au BufNewFile,BufRead *.js, *.html, *.css
     \ set tabstop=2
     \ set softtabstop=2
     \ set shiftwidth=2
 
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+"au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 set encoding=utf-8
 
@@ -82,12 +95,12 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let python_highlight_all=1
 syntax on
 
-if has('gui_running')
-  set background=dark
-  colorscheme solarized
-else
-  colorscheme zenburn
-endif
+"if has('gui_running')
+"  set background=dark
+"  colorscheme solarized
+"else
+"  colorscheme zenburn
+"endif
 
 call togglebg#map("<F5>")
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
@@ -95,9 +108,23 @@ let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 Plugin 'kien/ctrlp.vim'
 " http://www.youtube.com/watch?v=9XrHk3xjYsw
 set nu
-Plugin 'tpope/vim-fugitive'
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 set clipboard=unnamed
-let g:ycm_keep_logfiles = 1
-let g:ycm_log_level = 'debug'
+"set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+set rtp+=/usr/local/lib/python3.5/dist-packages/powerline/bindings/vim/
+
+" Always show statusline
+set laststatus=2
+"
+" " Use 256 colours (Use this setting only if your terminal supports 256
+" colours)
+set t_Co=256
+"let g:ycm_keep_logfiles = 1
+"let g:ycm_log_level = 'debug'
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
+let g:nerdtree_tabs_open_on_console_startup=1
+"set hlsearch
+
+colorscheme desert
+nnoremap <Leader>vv :vimgrep <cword> ./**/* <CR>:cw<CR>
+set wildignore+=**/bower_components/**,**/node_modules/**,**vendor/bundle**
