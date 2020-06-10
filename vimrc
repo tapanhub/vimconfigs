@@ -129,3 +129,4 @@ colorscheme desert
 nnoremap <Leader>vv :vimgrep <cword> ./**/* <CR>:cw<CR>
 set wildignore+=**/bower_components/**,**/node_modules/**,**vendor/bundle**
 set hlsearch
+hi Search cterm=NONE ctermfg=black ctermbg=green
