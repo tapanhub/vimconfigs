@@ -1,5 +1,19 @@
 # vimconfigs
 
+## Install Vundle
+```
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+:PluginInstall
+```
+## Install YouCompleteMe
+```
+install golang from https://golang.org/dl/
+sudo apt install build-essential cmake python3-dev
+cd ~/.vim/bundle/YouCompleteMe
+python3 install.py --all
+:YcmRestartServer
+```
+
 ## vim - git gutter
 https://github.com/airblade/vim-gitgutter
 ```
